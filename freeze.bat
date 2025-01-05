@@ -1,0 +1,1 @@
+.\venv3\scripts\pip freeze > requirements.txt
