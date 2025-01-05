@@ -1,5 +1,4 @@
 #! python3.13
-# coding=utf8
 
 """ the GUI for the player """
 

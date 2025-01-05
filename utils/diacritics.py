@@ -1,7 +1,7 @@
 #! python3.13
 # coding=utf8
 
-""" handling diacritics to be able to searh without using exact characters """
+""" handling diacritics to be able to search without using exact characters """
 
 __author__ = 'Sihir'  # noqa
 __copyright__ = "© Sihir 2021-2024 all rights reserved"  # noqa

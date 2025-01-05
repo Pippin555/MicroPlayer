@@ -6,6 +6,7 @@
 __author__ = 'Sihir'  # noqa
 __copyright__ = '© Sihir 2023-2024 all rights reserved'  # noqa
 
+# pip install pywin32
 # these functions are not exposed to pylint:
 # pylint: disable=no-name-in-module
 from win32api import GetLastError as _GetLastError

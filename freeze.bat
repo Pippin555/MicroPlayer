@@ -1,1 +1,1 @@
-.\venv3\scripts\pip freeze > requirements.txt
+.\.venv\scripts\pip freeze > requirements.txt

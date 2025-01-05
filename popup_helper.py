@@ -38,8 +38,8 @@ class PopupHelper:
     def do_popup(self, **kwargs):
         """ show a popup from the builder """
 
-        builder: StringBuilder = kwargs.get('builder', None)
-        root: Tk = kwargs.get('root', None)
+        builder: Optional[StringBuilder] = kwargs.get('builder', None)
+        root: Optional[Tk] = kwargs.get('root', None)
         mode: str = kwargs.get('mode', 'list')
         tag: Optional[str] = kwargs.get('tag', None)
         seconds: Optional[int] = kwargs.get('seconds', None)

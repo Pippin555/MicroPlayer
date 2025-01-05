@@ -23,6 +23,7 @@ from eyed3.core import CountAndTotalTuple
 
 from utils.quick_sort import quicksort
 from utils.string_builder import StringBuilder
+from utils.eyed3_wrapper import Eyed3Wrapper
 
 from mp3.popularity import get_rating
 from mp3.popularity import set_rating
@@ -290,7 +291,7 @@ class Mp3Tags:
         if not isfile(file_name):
             raise FileNotFoundError(file_name)
 
-        mp3 = eyed3.load(file_name)
+        mp3 = Eyed3Wrapper.load(file_name)
         tags = Mp3Tags.load(mp3)
         tags.filename = basename(file_name)
         tags.folder = dirname(file_name)

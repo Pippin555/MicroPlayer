@@ -12,6 +12,7 @@ from typing import Callable
 
 from datetime import timedelta
 
+# pip install pygame
 # pylint: disable=no-name-in-module
 from pygame import init as _game_init
 from pygame.mixer import init as _mixer_init

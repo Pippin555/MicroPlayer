@@ -5,12 +5,9 @@
 __author__ = 'Sihir'  # noqa
 __copyright__ = '© Sihir 2023-2024 all rights reserved'  # noqa
 
-from os import curdir
-from os import chdir
 from os import stat
 from os import environ
 
-from os.path import abspath
 from os.path import splitext
 
 from subprocess import Popen
