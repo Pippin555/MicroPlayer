@@ -40,8 +40,7 @@ class PyPlayerGui:
 
     def __init__(self,
                  business: PyPlayerBusiness,
-                 track_selected: Callable,
-                 method: str):
+                 track_selected: Callable):
         """ initialize the class"""
 
         self.business = business
@@ -52,8 +51,7 @@ class PyPlayerGui:
         self._transition = False
 
         root = Tk()
-        icon = PyPlayerGui.set_icon(root=root,
-                                    method=method)
+        icon = PyPlayerGui.set_icon(root=root)
 
         root.protocol("WM_DELETE_WINDOW", self._quit)
 
@@ -74,11 +72,10 @@ class PyPlayerGui:
         self._load_icons()
 
     @staticmethod
-    def set_icon(root: Tk,
-                 method: str) -> Optional[PhotoImage]:
+    def set_icon(root: Tk) -> Optional[PhotoImage]:
         """ set window icon and taskbar icon """
 
-        root.title(f'MicroPlayer: {method}')
+        root.title(f'MicroPlayer')
         icon = get_ico(key='player.ico', size=(20, 20))
         try:
             root.iconphoto(False,

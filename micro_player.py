@@ -37,8 +37,6 @@ class MicroPlayer:
         self.connection = None
 
         port = 5001
-        method = 'GUI only'
-
         with (cfg := MicroPlayerConfig(main=__file__, value=value)):
             value = cfg.value
             if 'port' not in value:
@@ -61,8 +59,7 @@ class MicroPlayer:
 
         self.business = PyPlayerBusiness()
         self.gui = PyPlayerGui(business=self.business,
-                               track_selected=self.select_track,
-                               method=method)
+                               track_selected=self.select_track)
 
         self.updates.append(self.gui.get_progress)
 
@@ -81,7 +78,9 @@ class MicroPlayer:
 
         self.updates = self.connection.update
 
-        timer = RepeatTimer(interval=1.0, function=self.updates)
+        timer = RepeatTimer(
+            interval=1.0,
+            function=self.updates)
         timer.start()
 
         self.gui.run()
