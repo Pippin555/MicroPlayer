@@ -75,7 +75,7 @@ class PyPlayerGui:
     def set_icon(root: Tk) -> Optional[PhotoImage]:
         """ set window icon and taskbar icon """
 
-        root.title(f'MicroPlayer')
+        root.title('MicroPlayer')
         icon = get_ico(key='player.ico', size=(20, 20))
         try:
             root.iconphoto(False,
@@ -84,6 +84,8 @@ class PyPlayerGui:
             # copy to the taskbar icon
             windll.shell32.SetCurrentProcessExplicitAppUserModelID(__version__)
             return icon
+
+        # pylint: disable=broad-exception-caught
         except Exception as exc:
             print(exc)
 
