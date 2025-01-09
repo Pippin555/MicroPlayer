@@ -9,6 +9,8 @@ from datetime import timedelta
 
 from typing import Callable
 
+from datetime import datetime
+
 from tkinter import Tk
 
 from player_config import MicroPlayerConfig
@@ -30,6 +32,7 @@ class MicroSocket:
         self.get_track = get_track
         self.set_sender = set_sender
         self.root = root
+        self._last = datetime.now()
 
         with (cfg := MicroPlayerConfig()):
             value = cfg.value
@@ -54,8 +57,12 @@ class MicroSocket:
 
         result = self.connect.poll(self.get_busy(), progress=str(progress))
         if not result:
-            self.set_sender(sender='disconnected')
+            # give the sender 5 seconds to reconnect
+            if datetime.now() - self._last > timedelta(seconds=5):
+                self.set_sender(sender='disconnected')
             return
+
+        self._last = datetime.now()
 
         value = MicroPlayerConfig().value
 
@@ -71,4 +78,4 @@ class MicroSocket:
             case 'play':
                 value['track'] = result['file_name']
                 value['progress'] = result['progress']
-                self.root.after(200, self.get_track)
+                self.root.after(200, self.get_track)  # noqa
