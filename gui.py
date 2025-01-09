@@ -298,3 +298,8 @@ class PyPlayerGui:
         """
 
         return self._buttons.get_busy()
+
+    def set_sender(self, sender: str):
+        """ update the caption """
+
+        self.controls['root'].title(f'MicroPlayer {sender}')

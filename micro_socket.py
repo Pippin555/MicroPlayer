@@ -21,12 +21,14 @@ class MicroSocket:
                  get_progress: Callable,
                  get_busy: Callable,
                  get_track: Callable,
+                 set_sender: Callable,
                  root: Tk):
         """ initialize the class """
 
         self.get_progress = get_progress
         self.get_busy = get_busy
         self.get_track = get_track
+        self.set_sender = set_sender
         self.root = root
 
         with (cfg := MicroPlayerConfig()):
@@ -52,9 +54,14 @@ class MicroSocket:
 
         result = self.connect.poll(self.get_busy(), progress=str(progress))
         if not result:
+            self.set_sender(sender='disconnected')
             return
 
         value = MicroPlayerConfig().value
+
+        sender = result.get('sender', '')
+        if sender:
+            self.set_sender(sender=sender)
 
         fnc = result['function']
         if not fnc:

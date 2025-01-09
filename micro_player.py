@@ -74,6 +74,7 @@ class MicroPlayer:
             get_progress=self.gui.get_progress,
             get_busy=self.gui.get_busy,
             get_track=self.business.play_track,
+            set_sender=self.set_sender,
             root=self.gui.root)
 
         self.updates = self.connection.update
@@ -91,6 +92,11 @@ class MicroPlayer:
         timer.cancel()
 
         sleep(2)
+
+    def set_sender(self, sender: str):
+        """ who sent the message? """
+
+        self.gui.set_sender(sender=sender)
 
     def select_track(self, file_name: str):
         """ select the track to play """
