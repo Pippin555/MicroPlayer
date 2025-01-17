@@ -15,6 +15,7 @@ from typing import Callable
 from os.path import isfile
 
 from utils.repeating_timer import RepeatTimer
+from utils.single_instance import single_instance
 
 from gui import PyPlayerGui
 from business import PyPlayerBusiness
@@ -118,7 +119,12 @@ class MicroPlayer:
 def main() -> int:
     """ main function """
 
-    MicroPlayer()
+    instance, pgm_name = single_instance()
+    if instance:
+        MicroPlayer()
+    else:
+        print(f'Only one instance of {pgm_name} can be started')
+        return 1
 
     return 0
 
