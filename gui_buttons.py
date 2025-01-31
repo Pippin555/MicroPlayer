@@ -49,6 +49,7 @@ class GuiButtons:
         self.track_selected = track_selected
         self.track = None
         self.duration = 0
+        self._hms = None
 
         self._mixer = PyMixer(finished=self.finished)
         business.mixer = self._mixer
@@ -258,6 +259,10 @@ class GuiButtons:
     def _context(self, event):
         """ right click called """
 
+        if self._hms:
+            self._hms.close()
+            self._hms = None
+
         root = self.controls['root']
 
         x_pos = event.x_root
@@ -272,11 +277,12 @@ class GuiButtons:
         hour = int(minute / 60)
         minute = minute % 60
 
-        _ = HmsContainer(master=root,
-                         x_pos=x_pos,
-                         y_pos=y_pos,
-                         value=(hour, minute, second),
-                         callback=self._hms_ok)
+        self._hms = HmsContainer(
+            master=root,
+            x_pos=x_pos,
+            y_pos=y_pos,
+            value=(hour, minute, second),
+            callback=self._hms_ok)
 
     def _hms_ok(self, value: tuple):
         """ change the progress """

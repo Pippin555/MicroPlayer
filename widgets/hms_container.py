@@ -1,17 +1,19 @@
 #! python3.13
-# coding=utf8
 
 """ Spinbox with StringVar """
 
 __author__ = 'Sihir'  # noqa
-__copyright__ = '© Sihir 2023-2024 all rights reserved'  # noqa
+__copyright__ = '© Sihir 2023-2025 all rights reserved'  # noqa
 
 from typing import Callable
+from typing import cast
 
 from tkinter import Frame
 from tkinter import Tk
 from tkinter import Toplevel
 from tkinter import Button
+
+from PIL import Image
 
 from imgdict.get_dict_img import get_ico
 
@@ -78,8 +80,7 @@ class HmsContainer:
                                 pady=1,
                                 sticky='news')
 
-
-        self.icon_check = get_ico(key='check.ico', size=(20, 20))
+        self.icon_check = cast(Image, get_ico(key='check.ico', size=(20, 20)))
         self._ok_button = Button(master=self._window,
                                  image=self.icon_check,
                                  command=self._on_ok)
@@ -90,10 +91,10 @@ class HmsContainer:
                              pady=1,
                              sticky='news')
 
-        self.icon_close = get_ico(key='check.ico', size=(20, 20))
+        self.icon_close = cast(Image, get_ico(key='close.ico', size=(20, 20)))
         self._cancel_button = Button(master=self._window,
                                      image=self.icon_close,
-                                     command=self._close)
+                                     command=self.close)
 
         self._cancel_button.grid(row=0,
                                  column=4,
@@ -126,9 +127,9 @@ class HmsContainer:
 
         if self._callback:
             self._callback(self.hms_value)
-        self._close()
+        self.close()
 
-    def _close(self):
+    def close(self):
         """""' cancel was clicked """
 
         self._window.destroy()
