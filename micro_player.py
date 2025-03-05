@@ -50,13 +50,13 @@ class MicroPlayer:
             it_arg = iter(argv[1:])
             for arg in it_arg:
                 match arg:
-                    case '-m':
-                        value['track'] = next(it_arg, None)
-
                     case '-p':
                         str_port = next(it_arg, str(port))
                         value['port'] = str_port
                         port = int(str_port)
+
+                    case _:
+                        value['track'] = next(it_arg, None)
 
         self.business = PyPlayerBusiness()
         self.gui = PyPlayerGui(business=self.business,
