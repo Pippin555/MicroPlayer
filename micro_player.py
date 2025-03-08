@@ -44,7 +44,7 @@ class MicroPlayer:
                 value['port'] = str(port)
 
             track = value.get('track', None)
-            if not isfile(track):
+            if track is None or not isfile(track):
                 value['track'] = "C:\\bin\\Boenda Moelia II.mp3"
 
             it_arg = iter(argv[1:])
