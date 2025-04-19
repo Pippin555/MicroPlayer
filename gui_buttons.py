@@ -21,6 +21,7 @@ from tkinter.ttk import Style
 from typing import Callable
 
 from pymixer import PyMixer
+from utils.pathtools import change_ext
 
 from utils.py_input import volume_up
 from utils.py_input import volume_down
@@ -142,29 +143,22 @@ class GuiButtons:
                      sticky='ew')
         row_one.rowconfigure(1, weight=1)
 
-        support_lyrics = True
+        row_one.grid_columnconfigure(index=0, weight=0)
+        row_one.grid_columnconfigure(index=1, weight=1)
 
-        if support_lyrics:
-            row_one.grid_columnconfigure(index=0, weight=0)
-            row_one.grid_columnconfigure(index=1, weight=1)
+        lyr = Label(master=row_one,
+                    text='    ',
+                    borderwidth=1,
+                    image=self._get_icon('lyr_on'),
+                    relief = 'raised')
 
-            lyr = Label(master=row_one,
-                        text='    ',
-                        borderwidth=1,
-                        image=self._get_icon('lyr_off'),
-                        relief = 'raised')
+        lyr.grid(row=1,
+                 column=0,
+                 padx=1,
+                 pady=(0,0),
+                 sticky='news')
 
-            lyr.grid(row=1,
-                     column=0,
-                     padx=1,
-                     pady=(0,0),
-                     sticky='news')
-
-            lyr.bind('<Button-1>', self._show_lyrics)
-            col = 1,
-        else:
-            row_one.grid_columnconfigure(index=0, weight=1)
-            col = 0
+        lyr.bind('<Button-1>', self._show_lyrics)
 
         ctrl1 = Label(master=row_one,
                       text='result',
@@ -174,7 +168,7 @@ class GuiButtons:
                       anchor='w')
 
         ctrl1.grid(row=1,
-                   column=col,
+                   column=1,
                    padx=(1, 4),
                    pady=0,
                    sticky='we')
@@ -321,12 +315,19 @@ class GuiButtons:
 
     def _show_lyrics(self, _):
         """ ... """
+        with (cfg := MicroPlayerConfig()):
+            track = cfg.value['track']
 
         builder = StringBuilder()
         aln = builder.append_line
 
-        aln("this is the display for the lyrics")
-        aln('when the lyrics are available')
+        lyrics = change_ext(track, '.txt')
+        if not isfile(lyrics):
+            aln(f'No lyrics file found:')
+            aln(lyrics)
+        else:
+            with open(file=lyrics, mode='rt', encoding='utf-8') as stream:
+                builder.append(stream.read())
 
         self._business.popup_helper.do_popup(
             builder=builder,
