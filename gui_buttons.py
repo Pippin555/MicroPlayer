@@ -24,12 +24,14 @@ from pymixer import PyMixer
 
 from utils.py_input import volume_up
 from utils.py_input import volume_down
+from utils.string_builder import StringBuilder
 
 from business import PyPlayerBusiness
 
 from widgets.hms_container import HmsContainer
-
 from player_config import MicroPlayerConfig
+
+from popup_helper import PopupHelper
 
 
 class GuiButtons:
@@ -140,18 +142,41 @@ class GuiButtons:
                      sticky='ew')
         row_one.rowconfigure(1, weight=1)
 
+        support_lyrics = True
+
+        if support_lyrics:
+            row_one.grid_columnconfigure(index=0, weight=0)
+            row_one.grid_columnconfigure(index=1, weight=1)
+
+            lyr = Label(master=row_one,
+                        text='    ',
+                        borderwidth=1,
+                        image=self._get_icon('lyr_off'),
+                        relief = 'raised')
+
+            lyr.grid(row=1,
+                     column=0,
+                     padx=1,
+                     pady=(0,0),
+                     sticky='news')
+
+            lyr.bind('<Button-1>', self._show_lyrics)
+            col = 1,
+        else:
+            row_one.grid_columnconfigure(index=0, weight=1)
+            col = 0
+
         ctrl1 = Label(master=row_one,
                       text='result',
                       borderwidth=1,
-                      width=64,
                       justify='left',
                       relief='raised',
                       anchor='w')
 
         ctrl1.grid(row=1,
-                   column=0,
-                   padx=2,
-                   pady=2,
+                   column=col,
+                   padx=(1, 4),
+                   pady=0,
                    sticky='we')
 
         self.controls['result_label'] = ctrl1
@@ -293,3 +318,18 @@ class GuiButtons:
         """ set the result label text """
 
         self.controls['result_label'].config(text=text)
+
+    def _show_lyrics(self, _):
+        """ ... """
+
+        builder = StringBuilder()
+        aln = builder.append_line
+
+        aln("this is the display for the lyrics")
+        aln('when the lyrics are available')
+
+        self._business.popup_helper.do_popup(
+            builder=builder,
+            root=self.master.root,
+            mode='list',
+            title='Lyrics')

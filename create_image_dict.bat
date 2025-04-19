@@ -1,0 +1,1 @@
+start /B "Image Dictionary" %1/python.exe ./imgdict/create_img_dict.py

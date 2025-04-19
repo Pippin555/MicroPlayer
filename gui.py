@@ -161,7 +161,9 @@ class PyPlayerGui:
                      'speaker_down',
                      'speaker_off',
                      'speaker_on',
-                     'mp3']:
+                     'mp3',
+                     'lyr_off',
+                     'lyr_on']:
 
             icon = get_ico(key=name + '.ico', size=(20, 20))
             icons[name] = icon
