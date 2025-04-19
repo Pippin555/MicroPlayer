@@ -131,6 +131,7 @@ class GuiButtons:
                   pady=(3, 1))
 
         pbar.bind('<Button-1>', self._change_progress)
+
         pbar.bind('<Button-3>', self._context)
 
         self.controls['pbar'] = pbar
