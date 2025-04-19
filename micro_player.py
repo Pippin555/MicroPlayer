@@ -16,6 +16,7 @@ from os.path import isfile
 
 from utils.repeating_timer import RepeatTimer
 from utils.single_instance import single_instance
+from utils.string_builder import StringBuilder
 
 from gui import PyPlayerGui
 from business import PyPlayerBusiness
@@ -106,6 +107,17 @@ class MicroPlayer:
             if self.connection:
                 self.connection.close()
                 self.connection = None
+            return
+
+        if not isfile(file_name):
+            builder = StringBuilder(
+                f'File not found:\n{file_name}')
+
+            self.business.do_popup(
+                root=self.gui.root,
+                builder=builder,
+                seconds=5)
+
             return
 
         with (cfg := MicroPlayerConfig()):
