@@ -107,6 +107,7 @@ class Popup:
 
         ok_button = Button(master=main,
                            text="OK",
+                           width=6,
                            command=self.ok_click,
                            fg='white',
                            bg='blue')
@@ -119,6 +120,7 @@ class Popup:
 
         cancel_button = Button(master=main,
                                text="Cancel",
+                               width=6,
                                command=self.cancel_click,
                                fg='white',
                                bg='blue')
