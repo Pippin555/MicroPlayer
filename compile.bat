@@ -1,5 +1,5 @@
 rem %1 is the folder of the pyinstaller
-%1/pyinstaller micro_player.py --onefile --noconsole
+%1/pyinstaller micro_player.py --exclude-module pkg_resources --onefile --noconsole
 :
 copy dist\micro_player.exe c:\bin\micro_player.exe
 :
