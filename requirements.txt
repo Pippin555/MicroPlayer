@@ -3,15 +3,10 @@ astroid==3.3.11
 autocommand==2.2.2
 chardet==5.2.0
 colorama==0.4.6
-coverage==7.10.6
 deprecation==2.1.0
 dill==0.4.0
 eyeD3==0.9.8
 filetype==1.2.0
-isort==6.0.1
-jaraco.context==6.0.1
-jaraco.functools==4.3.0
-jaraco.text==4.0.0
 jsons==1.6.3
 mccabe==0.7.0
 more-itertools==10.7.0
@@ -22,10 +17,8 @@ platformdirs==4.4.0
 pygame==2.6.1
 pyinstaller==6.15.0
 pyinstaller-hooks-contrib==2025.8
-pylint==3.3.8
 pywin32==311
 pywin32-ctypes==0.2.3
-setuptools==80.9.0
 toml==0.10.2
 tomlkit==0.13.3
 typish==1.9.3
