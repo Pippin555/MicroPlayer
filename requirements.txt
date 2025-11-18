@@ -1,11 +1,11 @@
 altgraph==0.17.4
-astroid==4.0.1
+astroid==4.0.2
 autocommand==2.2.2
 chardet==5.2.0
 colorama==0.4.6
 deprecation==2.1.0
 dill==0.4.0
-eyeD3==0.9.8
+eyeD3==0.9.9
 filetype==1.2.0
 jsons==1.6.3
 mccabe==0.7.0

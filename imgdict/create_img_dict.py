@@ -37,9 +37,6 @@ def stringify_dict(image_dict: dict, filename: str):
     """ ... """
 
     with open(file=filename, mode='w', encoding='utf8') as stream:
-        print('#! python3.13', file=stream)
-        print('# coding=utf8', file=stream)
-        print(file=stream)
         print('""" image resources """', file=stream)
         print(file=stream)
         print('__author__ = \'auto generated, do not alter\'', file=stream)
