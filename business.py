@@ -25,10 +25,10 @@ from popup_helper import DialogResult
 
 
 # pylint: disable=too-many-public-methods
-class PyPlayerBusiness:
+class PyPlayerBusiness:  # pylint: disable=too-many-instance-attributes
     """ the business class of the player """
 
-    def __init__(self):  # noqa
+    def __init__(self):
         """ initialize the business class """
 
         self._root = None
@@ -95,7 +95,7 @@ class PyPlayerBusiness:
         mode: str = kwargs.get('mode', 'list')
         tag: Any = kwargs.get('tag', None)
         seconds: Optional[int] = kwargs.get('seconds', None)
-        has_context = kwargs.get('has_context', False)
+        # has_context = kwargs.get('has_context', False)
 
         helper = self.popup_helper
 
