@@ -1,4 +1,5 @@
-# created by virtualenv automatically
+# created by virtualenv automatically\
+/.idea
 /dist
 /venv
 /build

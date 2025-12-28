@@ -26,6 +26,20 @@ from typing import Optional
 from utils.file_encoding import get_encoding
 
 
+def has_ext(name: str, ext: str | tuple) -> bool:
+    """ return """
+
+    if isinstance(ext, str):
+        tup = (ext, )
+    elif isinstance(ext, tuple):
+        tup = ext
+    else:
+        return False
+
+    _, cur_ext = splitext(name)
+    return cur_ext.lower() in tup
+
+
 def change_ext(name, ext):
     """ change the extension of a file """
     return f'{splitext(name)[0]}{ext}'

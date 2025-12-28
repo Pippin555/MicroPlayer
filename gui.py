@@ -202,7 +202,7 @@ class PyPlayerGui:
         button = self.buttons[button_name]
         button.config(image=self._get_icon(icon_name))
 
-    def get_track(self):
+    def get_track(self) -> bool:
         """ load the track """
 
         self._transition = True
@@ -211,35 +211,47 @@ class PyPlayerGui:
 
         result = value.get('track', None)
         if result is None:
-            return
+            return False
 
         if not isfile(result):
-            return
+            return False
 
         if 'progress' not in value:
-            return
+            return False
 
         # read the progress from the config file
         progress = value.get('progress', 0.0)
 
-        # to do: move to the business layer
-
-        self.file = Mp3Tags.from_file(result)
-        mp3 = self.file
-        duration = mp3.duration
-        title = mp3.title
-        composer = mp3.composer
-        artist = mp3.artist
-        who = composer if composer is not None else artist
         selected = 0
+        duration = 0
 
-        self.set_result(text=f'{title} - {who}')
+        # to do: move to the business layer
+        try:
+            self.file = Mp3Tags.from_file(result)
+            mp3 = self.file
+            duration = mp3.duration
+            title = mp3.title
+            composer = mp3.composer
+            artist = mp3.artist
+            who = composer if composer is not None else artist
+            selected = 0
+
+            self.set_result(text=f'{title} - {who}')
+
+        except ValueError as vex:
+            self.set_result(text=str(vex.args[0]))
+            return False
+
+        except Exception as exc:
+            self.set_result(text=exc.message)
+            return False
 
         self.controls['selected'] = selected
         self.controls['duration'] = duration
-
         self._buttons.load(result, duration, progress)
         self._set_button(button_name='play', icon_name='pause')
+
+        return True
 
     def get_progress(self):
         """ at how many seconds is the player """

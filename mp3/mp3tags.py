@@ -288,9 +288,6 @@ class Mp3Tags:
     def from_file(cls, file_name: str):
         """ create from file """
 
-        if not isfile(file_name):
-            raise FileNotFoundError(file_name)
-
         mp3 = Eyed3Wrapper.load(file_name)
         tags = Mp3Tags.load(mp3)
         tags.filename = basename(file_name)
