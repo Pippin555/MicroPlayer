@@ -168,6 +168,9 @@ class SocketServer:
     def check_message(self, message: str):
         """ check the message, get an answer from the callback """
 
+        print(">> " + message)
+        busy = False
+        answer = False
         busy = True
         match message:
             case '-q':
@@ -181,4 +184,5 @@ class SocketServer:
                 else:
                     answer = 'ignored'
 
+        print(f"<< {busy} {answer}")
         return busy, answer

@@ -4,7 +4,7 @@
 """ some tools for paths"""
 
 __author__ = 'Sihir'
-__copyright__ = '© Sihir 2021-2024 all rights reserved'
+__copyright__ = '© Sihir 2021-2025 all rights reserved'
 
 from os import listdir
 from os import walk

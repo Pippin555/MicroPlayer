@@ -1,5 +1,3 @@
-#! python3.13
-
 """ the GUI for the player """
 
 __author__ = 'Sihir'  # noqa
@@ -10,11 +8,8 @@ from sys import argv
 
 from time import sleep
 
-from typing import Callable
-
 from os.path import isfile
 
-from utils.repeating_timer import RepeatTimer
 from utils.single_instance import single_instance
 from utils.string_builder import StringBuilder
 
@@ -35,7 +30,6 @@ class MicroPlayer:
         value = {}
         self.use_socket = False
         self.use_gremlin = False
-        self.updates: [Callable] = []
         self.connection = None
 
         port = 5001
@@ -63,8 +57,6 @@ class MicroPlayer:
         self.gui = PyPlayerGui(business=self.business,
                                track_selected=self.select_track)
 
-        self.updates.append(self.gui.get_progress)
-
         self.gui.create_gui()
 
         # save the root
@@ -79,21 +71,23 @@ class MicroPlayer:
             set_sender=self.set_sender,
             root=self.gui.root)
 
-        self.updates = self.connection.update
-
-        timer = RepeatTimer(
-            interval=1.0,
-            function=self.updates)
-        timer.start()
+        self.updater()
 
         self.gui.run()
 
         if self.connection:
             self.connection.close()
 
-        timer.cancel()
-
         sleep(2)
+
+    def updater(self):
+        """ ... """
+
+        print('updater: get_progress')
+        self.gui.get_progress()
+        print('updater: connection.update()')
+        self.connection.update()
+        self.gui.master.after(2000, self.updater)
 
     def set_sender(self, sender: str):
         """ who sent the message? """

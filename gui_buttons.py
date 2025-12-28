@@ -20,7 +20,11 @@ from tkinter.ttk import Style
 
 from typing import Callable
 
-from pymixer import PyMixer
+from queue import Queue
+from queue import Empty
+
+from vlc_mixer.vlc_mixer import VlcMixer
+
 from utils.pathtools import change_ext
 
 from utils.py_input import volume_up
@@ -31,8 +35,6 @@ from business import PyPlayerBusiness
 
 from widgets.hms_container import HmsContainer
 from player_config import MicroPlayerConfig
-
-from popup_helper import PopupHelper
 
 
 class GuiButtons:
@@ -53,9 +55,25 @@ class GuiButtons:
         self.track = None
         self.duration = 0
         self._hms = None
-
-        self._mixer = PyMixer(finished=self.finished)
+        self._queue = Queue()
+        self._mixer = VlcMixer(queue=self._queue)
         business.mixer = self._mixer
+
+        self._monitor_queue()
+
+    def _monitor_queue(self):
+        """ ... """
+
+        try:
+            while True:
+                event, payload = self._queue.get_nowait()
+                match event:
+                    case "finished":
+                        self.finished()
+        except Empty:
+            pass
+
+        self.master.root.after(100, self._monitor_queue)
 
     def _create_button(self, name: str, column: int, func: Callable, frame: Frame):
         """ append a button"""
@@ -274,7 +292,9 @@ class GuiButtons:
             2 when paused
         """
 
-        return self._mixer.busy
+        busy = self._mixer.busy
+        # print(f'busy {busy}')
+        return busy
 
     def _context(self, event):
         """ right click called """

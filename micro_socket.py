@@ -54,8 +54,11 @@ class MicroSocket:
             seconds = max(0, int(value))
 
         progress = timedelta(seconds=seconds)
+        busy = self.get_busy()
 
-        result = self.connect.poll(self.get_busy(), progress=str(progress))
+        print(f'micro_socket.update(busy= {busy} progress= {progress})')
+
+        result = self.connect.poll(busy, progress=str(progress))
         if not result:
             # give the sender 5 seconds to reconnect
             if datetime.now() - self._last > timedelta(seconds=5):

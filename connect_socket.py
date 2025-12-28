@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ Checkbutton container """
 
 __author__ = 'Sihir'  # noqa
@@ -66,6 +63,8 @@ class ConnectSocket:
 
     def poll(self, busy: int, progress: str) -> Optional[dict]:
         """ see whether something has come in """
+
+        print(f'poll, busy={busy}, progress={progress}')
 
         self._outgoing = {
             'progress': progress,

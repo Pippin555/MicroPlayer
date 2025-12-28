@@ -50,7 +50,8 @@ class PyPlayerGui:
         self._closed = False
         self._transition = False
 
-        root = Tk()
+        self._master = root = Tk()
+
         icon = PyPlayerGui.set_icon(root=root)
 
         root.protocol("WM_DELETE_WINDOW", self._quit)
@@ -70,6 +71,12 @@ class PyPlayerGui:
         # interface to button functions
         self.buttons = {}
         self._load_icons()
+
+    @property
+    def master(self):
+        """ ... """
+
+        return self._master
 
     @staticmethod
     def set_icon(root: Tk) -> Optional[PhotoImage]:
@@ -260,6 +267,8 @@ class PyPlayerGui:
         if self._closed:
             print('shutting down')
             return 0
+
+        # print('pyPlayer.get progress')
 
         pos = self._buttons.get_progress()
         self._show_progress(pos)
