@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the business part of the player """
 
 __author__ = 'Sihir'  # noqa
@@ -115,8 +112,8 @@ class PyPlayerBusiness:  # pylint: disable=too-many-instance-attributes
     def _dialog_close(self, sender: PopupWindowed, result: DialogResult):
         """ dialog is closing """
 
-        assert self
-        assert result
+        _ = self
+        _ = result
 
         position = (sender.window_left, sender.window_top)
         with (conf := MicroPlayerConfig()):
@@ -133,15 +130,17 @@ class PyPlayerBusiness:  # pylint: disable=too-many-instance-attributes
     @property
     def result_callback(self) -> Callable:
         """ for getting the result callback function """
+
         return self._result_callback
 
     @result_callback.setter
     def result_callback(self, value: Callable):
         """ for setting the result callback function """
+
         self._result_callback = value
 
-    def db_callback(self, req: dict):
-        """ message from the database """
-
-        for key, value in req:
-            print(f'{key: <8} {value}')
+    # def db_callback(self, req: dict):
+    #     """ message from the database """
+    #
+    #     for key, value in req:
+    #         print(f'{key: <8} {value}')

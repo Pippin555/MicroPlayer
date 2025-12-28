@@ -1,5 +1,3 @@
-#! python3.13
-
 """ Spinbox with StringVar """
 
 __author__ = 'Sihir'  # noqa
@@ -24,7 +22,7 @@ class HmsContainer:
     """ hour minute second triple spin box """
 
     def __init__(self,
-                 master: (Tk, Frame, Toplevel),
+                 master: Tk,
                  x_pos: int,
                  y_pos: int,
                  value: tuple,

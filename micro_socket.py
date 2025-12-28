@@ -56,7 +56,7 @@ class MicroSocket:
         progress = timedelta(seconds=seconds)
         busy = self.get_busy()
 
-        print(f'micro_socket.update(busy= {busy} progress= {progress})')
+        # print(f'micro_socket.update(busy= {busy} progress= {progress})')
 
         result = self.connect.poll(busy, progress=str(progress))
         if not result:

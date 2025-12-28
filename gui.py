@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the GUI for the player """
 
 __author__ = 'Sihir'  # noqa
@@ -265,7 +262,7 @@ class PyPlayerGui:
 
         # system is shutting down
         if self._closed:
-            print('shutting down')
+            # print('shutting down')
             return 0
 
         # print('pyPlayer.get progress')

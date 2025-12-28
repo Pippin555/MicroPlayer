@@ -64,7 +64,7 @@ class ConnectSocket:
     def poll(self, busy: int, progress: str) -> Optional[dict]:
         """ see whether something has come in """
 
-        print(f'poll, busy={busy}, progress={progress}')
+        # print(f'poll, busy={busy}, progress={progress}')
 
         self._outgoing = {
             'progress': progress,
@@ -100,6 +100,6 @@ class ConnectSocket:
             }
             message = dumps(data)
 
-        answer = client.communicate(message=message)
-        if self._debug:
-            print(answer)
+        _ = client.communicate(message=message)
+        # if self._debug:
+        #    print(answer)

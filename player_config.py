@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the configuration of the player """
 
 __author__ = 'Sihir'  # noqa

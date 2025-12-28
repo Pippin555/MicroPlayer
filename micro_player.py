@@ -83,9 +83,9 @@ class MicroPlayer:
     def updater(self):
         """ ... """
 
-        print('updater: get_progress')
+        # print('updater: get_progress')
         self.gui.get_progress()
-        print('updater: connection.update()')
+        # print('updater: connection.update()')
         self.connection.update()
         self.gui.master.after(2000, self.updater)
 

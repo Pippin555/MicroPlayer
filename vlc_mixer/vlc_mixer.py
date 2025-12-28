@@ -4,11 +4,10 @@ __author__ = 'Sihir'
 __copyright__ = '© Sihir 2025-2025 all rights reserved'
 __version__ = 'Sihir.entertainment.player.v1.0-vlc'  # noqa
 
-from typing import Optional, Callable
+from typing import Optional
 
 from queue import Queue
 
-from datetime import timedelta
 from pathlib import Path
 
 import vlc
@@ -20,6 +19,8 @@ class VlcMixer:
     """ the audio functions (VLC backend) """
 
     def __init__(self, queue: Queue):
+        """ ... """
+
         self.offset = 0          # milliseconds
         self.duration = 0        # seconds
         self.filename = ''
@@ -28,19 +29,21 @@ class VlcMixer:
 
         self._instance = vlc.Instance(
             "--quiet",
-            "--aout=directsound")
+            "--aout=directsound")  # noqa
 
         self._player = self._instance.media_player_new()
 
         self._event_mgr = self._player.event_manager()
         self._event_mgr.event_attach(
-            vlc.EventType.MediaPlayerEndReached,
+            vlc.EventType.MediaPlayerEndReached,  # noqa
             self._on_end_reached,
         )
 
-    # -------------------------------------------------------------
-
     def _on_end_reached(self, event):
+        """ ... """
+
+        _ = event
+
         self.offset = 0
         self.duration = 0
         self.filename = ''
@@ -48,8 +51,6 @@ class VlcMixer:
 
         if self._queue is not None:
             self._queue.put(("finished", None))
-
-    # -------------------------------------------------------------
 
     def change_progress(self, pos: float):
         """ change the progress by clicking on the progress bar """
@@ -65,27 +66,19 @@ class VlcMixer:
         self.offset = seconds * 1000
         self._player.set_time(self.offset)
 
-    # -------------------------------------------------------------
-
     def get_progress(self) -> Optional[float]:
         """ at how many seconds is the player """
 
-        print('VlcMixer.get_progress()')
         state = self._player.get_state()
-        if state in (vlc.State.Ended, vlc.State.Stopped, vlc.State.Error):
-            print('returns None')
+        if state in (vlc.State.Ended, vlc.State.Stopped, vlc.State.Error):  # noqa
             return None
 
         pos_ms = self._player.get_time()
         if pos_ms < 0 or self._player.get_length() <= 0:
-            print('returns None')
             return None
 
-        value = (pos_ms + self.offset) / 1000.0
-        print(f'returns {value}')
+        value = pos_ms / 1000.0
         return value
-
-    # -------------------------------------------------------------
 
     @property
     def busy(self) -> int:
@@ -99,15 +92,13 @@ class VlcMixer:
         state = self._player.get_state()
 
         match state:
-            case vlc.State.Playing:
+            case vlc.State.Playing:  # noqa
                 self.paused = False
                 return 1
-            case vlc.State.Paused:
+            case vlc.State.Paused:  # noqa
                 return 2
             case _:
                 return 0
-
-    # -------------------------------------------------------------
 
     def load(self, track: str, duration: int, progress: int):
         """ load and play the track """
@@ -131,14 +122,12 @@ class VlcMixer:
         if self.offset > 0:
             self._player.set_time(self.offset)
 
-    # -------------------------------------------------------------
-
     def play(self) -> str:
         """ play or pause """
 
         state = self._player.get_state()
 
-        if state == vlc.State.Playing:
+        if state == vlc.State.Playing:  # noqa
             self._player.pause()
             self.paused = True
             return 'play'
@@ -146,15 +135,11 @@ class VlcMixer:
         self._player.play()
         return 'pause'
 
-    # -------------------------------------------------------------
-
     def stop(self):
         """ stop the music """
 
         self._player.stop()
         self.unload()
-
-    # -------------------------------------------------------------
 
     def reposition(self, value: tuple):
         """ change the progress """
@@ -164,8 +149,6 @@ class VlcMixer:
 
         self.offset = seconds * 1000
         self._player.set_time(self.offset)
-
-    # -------------------------------------------------------------
 
     def unload(self):
         """ release the file """
