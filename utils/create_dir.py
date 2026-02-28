@@ -1,5 +1,3 @@
-#! python3.13
-
 """ create directory and create directory for a file """
 
 __author__ = 'Sihir'

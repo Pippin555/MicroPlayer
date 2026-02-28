@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the class that handles the SystemEvent API """
 
 __author__ = 'Sihir'  # noqa

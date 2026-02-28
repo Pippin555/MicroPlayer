@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ some tools for paths"""
 
 __author__ = 'Sihir'

@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ show a popup window """
 
 __author__ = 'Sihir'  # noqa

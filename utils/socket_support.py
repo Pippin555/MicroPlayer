@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ connect to the server using sockets """
 
 __author__ = 'Sihir'

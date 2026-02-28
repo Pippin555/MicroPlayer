@@ -1,5 +1,3 @@
-#! python3.13
-
 """ container for mp3 tags """
 
 __author__ = 'Sihir'  # noqa

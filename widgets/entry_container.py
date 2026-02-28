@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the container for an entry with prompt and unit labels """
 
 __author__ = 'Sihir'  # noqa

@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ get and set mp3 tags """
 
 __author__ = 'Sihir'

@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ simulate keyboard, mouse, hardware inputs """
 
 __author__ = 'Sihir'  # noqa

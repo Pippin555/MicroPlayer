@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ utilities for image resources, use Pillow Image for conversion """
 
 __author__ = 'Sihir'  # noqa

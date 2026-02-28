@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ tooltip for a widget
 
 gives a Tkinter widget a tooltip as the mouse is above the widget

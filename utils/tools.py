@@ -1,5 +1,3 @@
-#! python3.13
-
 """ the StringBuilder class using StringIO """
 
 __author__ = 'Sihir'  # noqa

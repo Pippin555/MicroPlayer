@@ -1,5 +1,3 @@
-#! python3.13
-
 """ popularity module interface """
 
 __author__ = 'Sihir'

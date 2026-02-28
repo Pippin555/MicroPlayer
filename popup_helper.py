@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the helper for the Popup window """
 
 __author__ = 'Sihir'  # noqa

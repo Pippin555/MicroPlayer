@@ -1,5 +1,3 @@
-#! python3.13
-
 """ the GUI for the player """
 
 __author__ = 'Sihir'  # noqa

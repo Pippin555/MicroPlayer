@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ receive the system event when the program is the only instance, else None """
 
 __author__ = 'Sihir'  # noqa

@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ repeating timer implementation """
 
 __author__ = 'Sihir'  # noqa

@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ Singleton metaclass """
 
 __author__ = 'Sihir'

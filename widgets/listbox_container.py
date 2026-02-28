@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the GUI for the query """
 
 __author__ = 'Sihir'  # noqa

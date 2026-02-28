@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ implementation of a Treeview """
 
 __author__ = 'Sihir'  # noqa

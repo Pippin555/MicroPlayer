@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ the (partial) quicksort algorithm """
 
 __author__ = 'Sihir'  # noqa

@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ Checkbutton container """
 
 __author__ = 'Sihir'  # noqa

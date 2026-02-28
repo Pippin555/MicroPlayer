@@ -1,6 +1,3 @@
-#! python3.13
-#  Copyright (c) 2020 - 2020. Sihir Veenendaal
-
 """ merge exception information from two sources into one class"""
 
 __author__ = 'Sihir'

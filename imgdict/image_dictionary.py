@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ image resources """
 
 __author__ = 'auto generated, do not alter'

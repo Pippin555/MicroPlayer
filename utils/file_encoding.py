@@ -1,4 +1,3 @@
-#! python3.13
 """ deduce the file encoding from the Byte Order Mark or the file contents """
 
 __author__ = 'Sihir'

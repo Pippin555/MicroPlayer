@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ create the image and icon dictionary in code """
 
 __author__ = 'Sihir'  # noqa

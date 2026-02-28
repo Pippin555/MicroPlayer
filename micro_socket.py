@@ -1,5 +1,3 @@
-#! python3.13
-
 """ connection to the Socket """
 
 __author__ = 'Sihir'  # noqa

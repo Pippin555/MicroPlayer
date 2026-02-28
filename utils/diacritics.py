@@ -1,6 +1,3 @@
-#! python3.13
-# coding=utf8
-
 """ handling diacritics to be able to search without using exact characters """
 
 __author__ = 'Sihir'  # noqa
